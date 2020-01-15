@@ -8,7 +8,7 @@ import io.netty.buffer.Unpooled;
 
 /**
  * ByteBuf Demo.
- * 
+ *
  * @since 1.0.0 2019年10月7日
  * @author <a href="https://waylau.com">Way Lau</a>
  */
@@ -53,7 +53,7 @@ public class ByteBufDemo {
 
 	/**
 	 * 打印出ByteBuf的信息
-	 * 
+	 *
 	 * @param buffer
 	 */
 	private static void printBuffer(ByteBuf buffer) {

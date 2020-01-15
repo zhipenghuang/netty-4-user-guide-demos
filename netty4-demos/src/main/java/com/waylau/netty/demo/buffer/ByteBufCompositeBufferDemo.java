@@ -32,7 +32,7 @@ public class ByteBufCompositeBufferDemo {
 
 		// 创建一个复合缓冲区
 		CompositeByteBuf compositeBuffer = Unpooled.compositeBuffer(10);
-		compositeBuffer.addComponents(heapBuf, directBuf); // 将缓冲区添加到符合缓冲区
+		compositeBuffer.addComponents(heapBuf, directBuf); // 将缓冲区添加到复合缓冲区
 
 		// 检查是否是支撑数组.
 		// 不是支撑数组，则为复合缓冲区
@@ -58,7 +58,7 @@ public class ByteBufCompositeBufferDemo {
 	/**
 	 * 打印出Buffer的信息
 	 * 
-	 * @param buffer
+	 * @param array
 	 */
 	private static void printBuffer(byte[] array, int offset, int len) {
 		System.out.println("array：" + array);
