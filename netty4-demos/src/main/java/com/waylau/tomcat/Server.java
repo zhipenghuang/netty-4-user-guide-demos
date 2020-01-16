@@ -11,14 +11,14 @@ import java.net.Socket;
 
 public class Server {
 
-    private static int post = 5228;
+    private static int port = 5228;
 
     private static UrlUtil urlutil = new UrlUtil();
 
     public static void main(String[] args) {
         System.out.println(" My Tomcat is Running");
         try {
-            ServerSocket server = new ServerSocket(post);
+            ServerSocket server = new ServerSocket(port);
             while (true) {
                 Socket socket = server.accept();// 服务器每接受一次请求，就创建一个socket对象
                 InputStream in = socket.getInputStream();
