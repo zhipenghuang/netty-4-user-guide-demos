@@ -1,6 +1,5 @@
 package com.waylau.disruptor;
 
-
 import com.lmax.disruptor.dsl.Disruptor;
 import java.util.Arrays;
 import java.util.concurrent.Executors;
@@ -22,5 +21,6 @@ public class Test {
         // 定义要发送的数据
         MsgProducer msgProducer = new MsgProducer(disruptor);
         msgProducer.send(Arrays.asList("nihao","hah"));
+        disruptor.shutdown();
     }
 }
