@@ -1,4 +1,4 @@
-package com.waylau.aes;
+package com.waylau.cipher;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
