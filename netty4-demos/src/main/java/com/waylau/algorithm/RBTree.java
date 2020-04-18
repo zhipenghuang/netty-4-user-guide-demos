@@ -124,7 +124,7 @@ public class RBTree<T extends Comparable<T>> {
     }
 
     //对某个节点进行左旋
-    public void leftRonate(RBNode<T> x) {
+    public void leftRotate(RBNode<T> x) {
         RBNode<T> y = x.rightChild;
 
         if (y.leftChild != null) {
@@ -150,7 +150,7 @@ public class RBTree<T extends Comparable<T>> {
     }
 
     //对某个节点进行右旋
-    public void rightRonate(RBNode<T> x) {
+    public void rightRotate(RBNode<T> x) {
         RBNode<T> y = x.leftChild;
 
         if (y.rightChild != null) {
@@ -190,7 +190,7 @@ public class RBTree<T extends Comparable<T>> {
                     continue;
                 } else {
                     if (parent.rightChild == node) {
-                        leftRonate(parent);
+                        leftRotate(parent);
                         RBNode<T> temp = node;
                         node = parent;
                         parent = temp;
@@ -198,7 +198,7 @@ public class RBTree<T extends Comparable<T>> {
 
                     setBlack(parent);
                     setRed(gparent);
-                    rightRonate(gparent);
+                    rightRotate(gparent);
 
                 }
             } else {
@@ -213,14 +213,14 @@ public class RBTree<T extends Comparable<T>> {
                     continue;
                 } else {
                     if (parent.leftChild == node) {
-                        rightRonate(parent);
+                        rightRotate(parent);
                         RBNode<T> temp = node;
                         node = parent;
                         parent = temp;
                     }
                     setBlack(parent);
                     setRed(gparent);
-                    leftRonate(gparent);
+                    leftRotate(gparent);
                 }
             }
         }
@@ -241,7 +241,7 @@ public class RBTree<T extends Comparable<T>> {
                 if (isRed(other)) {
                     setRed(parent);
                     setBlack(other);
-                    leftRonate(parent);
+                    leftRotate(parent);
                     continue;
                 } else {
                     if (isBlack(other.leftChild) && isBlack(other.rightChild)) {
@@ -253,12 +253,12 @@ public class RBTree<T extends Comparable<T>> {
                     } else if (isRed(other.leftChild) && isBlack(other.rightChild)) {
                         setRed(other);
                         setBlack(other.leftChild);
-                        rightRonate(other);
+                        rightRotate(other);
                     } else if (isRed(other.rightChild)) {
                         setColor(other, colorOf(parent));
                         setBlack(parent);
                         setBlack(other.rightChild);
-                        leftRonate(parent);
+                        leftRotate(parent);
                         break;
                     }
                 }
@@ -267,7 +267,7 @@ public class RBTree<T extends Comparable<T>> {
                 if (isRed(other)) {
                     setBlack(other);
                     setRed(parent);
-                    rightRonate(parent);
+                    rightRotate(parent);
                     continue;
                 } else {
                     if (isBlack(other.leftChild) && isBlack(other.rightChild)) {
@@ -279,12 +279,12 @@ public class RBTree<T extends Comparable<T>> {
                     } else if (isRed(other.rightChild) && isBlack(other.leftChild)) {
                         setRed(parent);
                         setBlack(other.rightChild);
-                        leftRonate(other);
+                        leftRotate(other);
                     } else if (isRed(other.leftChild)) {
                         setColor(other, colorOf(parent));
                         setBlack(parent);
                         setBlack(other.leftChild);
-                        rightRonate(parent);
+                        rightRotate(parent);
                         break;
                     }
                 }
