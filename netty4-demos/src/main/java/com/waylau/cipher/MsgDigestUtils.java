@@ -6,6 +6,10 @@ import java.security.SecureRandom;
 
 public class MsgDigestUtils {
 
+    public static String sha1(String src) {
+        return DigestUtils.sha1Hex(src);
+    }
+
     public static String sha256(String src) {
         return DigestUtils.sha256Hex(src);
     }
@@ -27,6 +31,6 @@ public class MsgDigestUtils {
         String salt = getSalt();
         System.out.println(salt);
         String password = sha256("123456" + salt);
-        System.out.println(password+salt);
+        System.out.println(password + salt);
     }
 }
