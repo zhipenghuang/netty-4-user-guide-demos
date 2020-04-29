@@ -5,23 +5,19 @@ import java.util.Map;
 
 public class Test {
 
-    public static ThreadLocal<Map> mapLocal = new ThreadLocal<>();
+    public static ThreadLocal<String> mapLocal = new ThreadLocal<>();
 
     public static void main(String[] args) throws InterruptedException {
-        Map<String, String> map = new HashMap<>();
-        map.put("main", "main");
-        Test.mapLocal.set(map);
-        System.out.println(Test.mapLocal.get().get("main"));
+        Test.mapLocal.set("ssss");
+        System.out.println(Test.mapLocal.get());
 
         Thread thread1 = new Thread(() -> {
-            Map<String, String> map1 = new HashMap<>();
-            map1.put("main", "ssss");
-            Test.mapLocal.set(map1);
-            System.out.println(Test.mapLocal.get().get("main"));
+            Test.mapLocal.set("aaaa");
+            System.out.println(Test.mapLocal.get());
         });
         thread1.start();
         thread1.join();
 
-        System.out.println(Test.mapLocal.get().get("main"));
+        System.out.println(Test.mapLocal.get());
     }
 }
