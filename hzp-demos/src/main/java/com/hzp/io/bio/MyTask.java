@@ -1,10 +1,7 @@
-package com.hzp.io.net;
+package com.hzp.io.bio;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 public class MyTask extends Thread {
 
