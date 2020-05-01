@@ -4,25 +4,29 @@ public class Test {
 
     private static final String THREAD_Name = "biz-thread";
 
-    public static void main(String[] args) throws InterruptedException {
-        //创建线程，内部任务是死循环
-        Thread thread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //如果当前线程被中断则退出循环
-                while (!Thread.currentThread().isInterrupted())
-                    System.out.println(Thread.currentThread()+"Hello");
-            }
-        });
-        //启动
-        thread.start();
-        //用户线程休眠3s
-        Thread.sleep(3000);
+    public static void main(String[] args) {
+        try {
+            MyThread thread = new MyThread();
+            thread.start();
+            Thread.sleep(1000);
+            thread.interrupt();
+            //Thread.currentThread().interrupt();
+            System.out.println("是否停止1？=" + thread.interrupted());//false
+            System.out.println("是否停止2？=" + thread.interrupted());//false main线程没有被中断!!!
+        } catch (InterruptedException e) {
+            System.out.println("main catch");
+            e.printStackTrace();
+        }
+        System.out.println("end!");
+    }
+}
 
-        //中断子线程
-        System.out.println("--begin interrupt sub thread--");
-        thread.interrupt();
-        System.out.println("--end   interrupt sub thread--");
-
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i < 500000; i++) {
+            System.out.println("i=" + (i + 1));
+        }
     }
 }
