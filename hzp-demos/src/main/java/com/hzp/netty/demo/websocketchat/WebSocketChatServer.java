@@ -6,12 +6,14 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  * WebSocket Chat Server.
- * 
- * @since 1.0.0 2020年1月1日
+ *
  * @author <a href="https://waylau.com">Way Lau</a>
+ * @since 1.0.0 2020年1月1日
  */
 public class WebSocketChatServer {
 
@@ -22,19 +24,20 @@ public class WebSocketChatServer {
     }
 
     public void run() throws Exception {
-        
+
         EventLoopGroup bossGroup = new NioEventLoopGroup(1); // (1)
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap(); // (2)
             b.group(bossGroup, workerGroup)
-             .channel(NioServerSocketChannel.class) // (3)
-             .childHandler(new WebSocketChatServerInitializer())  //(4)
-             .option(ChannelOption.SO_BACKLOG, 128)          // (5)
-             .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
-            
-    		System.out.println("WebsocketChatServer 启动了" + port);
-    		
+                    .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO)) // (3)
+                    .childHandler(new WebSocketChatServerInitializer())  //(4)
+                    .option(ChannelOption.SO_BACKLOG, 128)          // (5)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
+
+            System.out.println("WebsocketChatServer 启动了" + port);
+
             // 绑定端口，开始接收进来的连接
             ChannelFuture f = b.bind(port).sync(); // (7)
 
@@ -45,8 +48,8 @@ public class WebSocketChatServer {
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
-            
-    		System.out.println("WebsocketChatServer 关闭了");
+
+            System.out.println("WebsocketChatServer 关闭了");
         }
     }
 
