@@ -3,7 +3,7 @@ package com.hzp.producerAndConsumer;
 public class Test{
     public static void main(String[] args) {
         // 仓库对象
-        AbstractStorage abstractStorage = new Storage();
+        AbstractStorage abstractStorage = new Storage1();
 
         // 生产者对象
         Producer p1 = new Producer(abstractStorage);

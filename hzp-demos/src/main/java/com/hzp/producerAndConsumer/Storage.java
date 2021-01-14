@@ -46,7 +46,7 @@ public class Storage implements AbstractStorage {
             //不满足消费条件
             while(num > list.size()){
                 System.out.println("【要消费的产品数量】:" + num + "\t【库存量】:"
-                        + list.size() + "\t暂时不能执行生产任务!");
+                        + list.size() + "\t暂时不能执行消费任务!");
 
                 try {
                     list.wait();
